@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using webHibiscus.Models;
 
 namespace webHibiscus.Data
 {
@@ -12,5 +13,7 @@ namespace webHibiscus.Data
             : base(options)
         {
         }
+        public DbSet<webHibiscus.Models.Genero> Genero { get; set; }
+        public DbSet<webHibiscus.Models.Servicio> Servicio { get; set; }
     }
 }
