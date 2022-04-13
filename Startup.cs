@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using webHibiscus.Data;
+using webHibiscus.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace webHibiscus
 {
@@ -35,6 +37,9 @@ namespace webHibiscus
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            var coonection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<db_a83ea8_hibiscusadminContext>(options => options.UseSqlServer(coonection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
