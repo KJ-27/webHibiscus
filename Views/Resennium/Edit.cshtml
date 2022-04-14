@@ -6,10 +6,9 @@
 }
 
 <body onload="CRateSelected();">
-    <h1>Edit</h1>
-
-    <h4>Resennium</h4>
+    <h1>Editar Reseña:</h1>
     <hr />
+
     <div class="row">
         <div class="col-md-4">
             <form asp-action="Edit">
@@ -18,18 +17,18 @@
 
                 <div class="form-group">
                     <label class="control-label">Usuario</label>
-                    <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" disabled></select>
+                    <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" hidden></select>
                     <span asp-validation-for="IdCliente" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Cotenido" class="control-label"></label>
+                    <label class="control-label">Contenido</label>
                     <input asp-for="Cotenido" class="form-control" />
                     <span asp-validation-for="Cotenido" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Puntuacion" class="control-label"></label>
+                    <label class="control-label">Puntuación</label>
                     <input type="hidden" asp-for="Puntuacion" class="form-control" id="Rating" />
                     <div onmouseout="CRateSelected()">
                         <span class="starFade" id="Rate1" onclick="CRate(1)" onmouseover="CRateOver(1)" onmouseout="CRateOut(1)"></span>
@@ -42,20 +41,20 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Fecha" class="control-label"></label>
-                    <input asp-for="Fecha" class="form-control" disabled />
+                    <label asp-for="Fecha" class="control-label" hidden></label>
+                    <input type="hidden"  asp-for="Fecha" class="form-control" />
                     <span asp-validation-for="Fecha" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="submit" value="Actualizar" class="btn btn-success" />
                 </div>
             </form>
         </div>
     </div>
 
     <div>
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Volver a la lista</a>
     </div>
 </body>
 
