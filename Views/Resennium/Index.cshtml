@@ -5,50 +5,96 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<head>
+    <link rel="stylesheet" href="~/css/resennia.css" />
+</head>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cotenido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Puntuacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdClienteNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cotenido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Puntuacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdResenia">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdResenia">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdResenia">Delete</a>
-            </td>
-        </tr>
+<h2>Menú de reseñas</h2>
+<div class="" style="margin-bottom: 15px;">
+    <a class="btn btn-primary btn-small" asp-action="Create">Agregar Reseña</a>
+</div>
+
+@foreach (var item in Model)
+{
+
+    <div class="card container-fluid" style="background-color:white">
+
+        <div class="container-fluid">
+            <h4>
+                <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)</b>
+                <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)</b>
+                <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido2)</b>
+                -
+                @Html.ValueFor(modelItem => item.Fecha, "{0:dd/MM/yyyy}")
+            </h4>
+
+            <form>
+                <fieldset class="starability-basic">
+                    @{
+                        switch (item.Puntuacion)
+                        {
+                            case 1:
+                                <div>
+                                    <span class="starFade starGlow" id="Rate1"></span>
+                                    <span class="starFade" id="Rate2"></span>
+                                    <span class="starFade" id="Rate3"></span>
+                                    <span class="starFade" id="Rate4"></span>
+                                    <span class="starFade" id="Rate5"></span>
+                                </div>
+                                break;
+                            case 2:
+                                <div>
+                                    <span class="starFade starGlow" id="Rate1"></span>
+                                    <span class="starFade starGlow" id="Rate2"></span>
+                                    <span class="starFade" id="Rate3"></span>
+                                    <span class="starFade" id="Rate4"></span>
+                                    <span class="starFade" id="Rate5"></span>
+                                </div>
+                                break;
+                            case 3:
+                                <div>
+                                    <span class="starFade starGlow" id="Rate1"></span>
+                                    <span class="starFade starGlow" id="Rate2"></span>
+                                    <span class="starFade starGlow" id="Rate3"></span>
+                                    <span class="starFade" id="Rate4"></span>
+                                    <span class="starFade" id="Rate5"></span>
+                                </div>
+                                break;
+                            case 4:
+                                <div>
+                                    <span class="starFade starGlow" id="Rate1"></span>
+                                    <span class="starFade starGlow" id="Rate2"></span>
+                                    <span class="starFade starGlow" id="Rate3"></span>
+                                    <span class="starFade starGlow" id="Rate4"></span>
+                                    <span class="starFade" id="Rate5"></span>
+                                </div>
+                                break;
+                            case 5:
+                                <div>
+                                    <span class="starFade starGlow" id="Rate1"></span>
+                                    <span class="starFade starGlow" id="Rate2"></span>
+                                    <span class="starFade starGlow" id="Rate3"></span>
+                                    <span class="starFade starGlow" id="Rate4"></span>
+                                    <span class="starFade starGlow" id="Rate5"></span>
+                                </div>
+                                break;
+                        }
+                    }
+                </fieldset>
+            </form>
+
+            <p class="container-fluid" style="color:black;font-size:large">@Html.DisplayFor(modelItem => item.Cotenido)</p>
+
+            <br />
+
+            <div class="container-fluid">
+                @if (ViewBag.UserId == item.IdClienteNavigation.IdUsuario)
+                {
+                    <a asp-action="Edit" class="btn btn-success btn-sm" asp-route-id="@item.IdResenia">Editar</a>
+                    <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.IdResenia">Eliminar</a>
+                }
+            </div>
+
+        </div>
+    </div>
 }
-    </tbody>
-</table>
