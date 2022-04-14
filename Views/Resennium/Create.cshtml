@@ -6,42 +6,90 @@
 }
 
 <h1>Create</h1>
-
 <h4>Resennium</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Cotenido" class="control-label"></label>
-                <input asp-for="Cotenido" class="form-control" />
-                <span asp-validation-for="Cotenido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdCliente" class="control-label"></label>
-                <select asp-for="IdCliente" class ="form-control" asp-items="ViewBag.IdCliente"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Puntuacion" class="control-label"></label>
-                <input asp-for="Puntuacion" class="form-control" />
-                <span asp-validation-for="Puntuacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+<body onload="init();">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label class="control-label">Contenido</label>
+                    <textarea asp-for="Cotenido" class="form-control"></textarea>
+                    <span asp-validation-for="Cotenido" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" hidden></select>
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" asp-for="Puntuacion" class="form-control" id="Rating" value="0" />
+                    <div onmouseout="CRateSelected()">
+                        <span class="starFade" id="Rate1" onclick="CRate(1)" onmouseover="CRateOver(1)" onmouseout="CRateOut(1)"></span>
+                        <span class="starFade" id="Rate2" onclick="CRate(2)" onmouseover="CRateOver(2)" onmouseout="CRateOut(2)"></span>
+                        <span class="starFade" id="Rate3" onclick="CRate(3)" onmouseover="CRateOver(3)" onmouseout="CRateOut(3)"></span>
+                        <span class="starFade" id="Rate4" onclick="CRate(4)" onmouseover="CRateOver(4)" onmouseout="CRateOut(4)"></span>
+                        <span class="starFade" id="Rate5" onclick="CRate(5)" onmouseover="CRateOver(5)" onmouseout="CRateOut(5)"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Fecha" class="control-label" hidden></label>
+                    <input type="hidden" asp-for="Fecha" class="form-control" id="datepicker" />
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+</body>
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script>
+    function CRate(r) {
+        $("#Rating").val(r);
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+        // unselect remaining
+        for (var i = r + 1; i <= 5; i++) {
+            $("#Rate" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateOver(r) {
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+    }
+
+    function CRateOut(r) {
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateSelected() {
+        var setRating = $("#Rating").val();
+        for (var i = 1; i <= setRating; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+    }
+
+    function init() {
+        let dformat = new Date(new Date().toString().split('GMT')[0] + ' UTC').toISOString().split('.')[0];
+        $("#datepicker").val(dformat);
+    }
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

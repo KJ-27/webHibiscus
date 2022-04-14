@@ -5,45 +5,90 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<body onload="CRateSelected();">
+    <h1>Edit</h1>
 
-<h4>Resennium</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdResenia" />
-            <div class="form-group">
-                <label asp-for="Cotenido" class="control-label"></label>
-                <input asp-for="Cotenido" class="form-control" />
-                <span asp-validation-for="Cotenido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdCliente" class="control-label"></label>
-                <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente"></select>
-                <span asp-validation-for="IdCliente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Puntuacion" class="control-label"></label>
-                <input asp-for="Puntuacion" class="form-control" />
-                <span asp-validation-for="Puntuacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4>Resennium</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdResenia" />
+
+                <div class="form-group">
+                    <label class="control-label">Usuario</label>
+                    <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" disabled></select>
+                    <span asp-validation-for="IdCliente" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Cotenido" class="control-label"></label>
+                    <input asp-for="Cotenido" class="form-control" />
+                    <span asp-validation-for="Cotenido" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Puntuacion" class="control-label"></label>
+                    <input type="hidden" asp-for="Puntuacion" class="form-control" id="Rating" />
+                    <div onmouseout="CRateSelected()">
+                        <span class="starFade" id="Rate1" onclick="CRate(1)" onmouseover="CRateOver(1)" onmouseout="CRateOut(1)"></span>
+                        <span class="starFade" id="Rate2" onclick="CRate(2)" onmouseover="CRateOver(2)" onmouseout="CRateOut(2)"></span>
+                        <span class="starFade" id="Rate3" onclick="CRate(3)" onmouseover="CRateOver(3)" onmouseout="CRateOut(3)"></span>
+                        <span class="starFade" id="Rate4" onclick="CRate(4)" onmouseover="CRateOver(4)" onmouseout="CRateOut(4)"></span>
+                        <span class="starFade" id="Rate5" onclick="CRate(5)" onmouseover="CRateOver(5)" onmouseout="CRateOut(5)"></span>
+                    </div>
+                    <span asp-validation-for="Puntuacion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Fecha" class="control-label"></label>
+                    <input asp-for="Fecha" class="form-control" disabled />
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+
+<script>
+    function CRate(r) {
+        $("#Rating").val(r);
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+        for (var i = r + 1; i <= 5; i++) {
+            $("#Rate" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateOver(r) {
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+    }
+
+    function CRateOut(r) {
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateSelected() {
+        var setRating = $("#Rating").val();
+        for (var i = 1; i <= setRating; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+    }
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -5,50 +5,105 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cotenido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Puntuacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdClienteNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cotenido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Puntuacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdResenia">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdResenia">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdResenia">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<body>
+    <h1>HOLA</h1>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cotenido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Puntuacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdClienteNavigation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cotenido)
+                    </td>
+                    <td>
+                        @{
+                            switch (item.Puntuacion)
+                            {
+                                case 1:
+                                    <div>
+                                        <span class="starFade starGlow" id="Rate1"></span>
+                                        <span class="starFade" id="Rate2"></span>
+                                        <span class="starFade" id="Rate3"></span>
+                                        <span class="starFade" id="Rate4"></span>
+                                        <span class="starFade" id="Rate5"></span>
+                                    </div>
+                                    break;
+                                case 2:
+                                    <div>
+                                        <span class="starFade starGlow" id="Rate1"></span>
+                                        <span class="starFade starGlow" id="Rate2"></span>
+                                        <span class="starFade" id="Rate3"></span>
+                                        <span class="starFade" id="Rate4"></span>
+                                        <span class="starFade" id="Rate5"></span>
+                                    </div>
+                                    break;
+                                case 3:
+                                    <div>
+                                        <span class="starFade starGlow" id="Rate1"></span>
+                                        <span class="starFade starGlow" id="Rate2"></span>
+                                        <span class="starFade starGlow" id="Rate3"></span>
+                                        <span class="starFade" id="Rate4"></span>
+                                        <span class="starFade" id="Rate5"></span>
+                                    </div>
+                                    break;
+                                case 4:
+                                    <div>
+                                        <span class="starFade starGlow" id="Rate1"></span>
+                                        <span class="starFade starGlow" id="Rate2"></span>
+                                        <span class="starFade starGlow" id="Rate3"></span>
+                                        <span class="starFade starGlow" id="Rate4"></span>
+                                        <span class="starFade" id="Rate5"></span>
+                                    </div>
+                                    break;
+                                case 5:
+                                    <div>
+                                        <span class="starFade starGlow" id="Rate1"></span>
+                                        <span class="starFade starGlow" id="Rate2"></span>
+                                        <span class="starFade starGlow" id="Rate3"></span>
+                                        <span class="starFade starGlow" id="Rate4"></span>
+                                        <span class="starFade starGlow" id="Rate5"></span>
+                                    </div>
+                                    break;
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
+                        @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)
+                        @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido2)
+                    </td>
+                    <td>
+                        @if (ViewBag.UserId == item.IdClienteNavigation.IdUsuario)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.IdResenia">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@item.IdResenia">Eliminar</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
