@@ -1,8 +1,119 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Hibiscus</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bienvenido</h1>
+    <hr />
 </div>
+
+<div class="row">
+    <div class="col-md-6 text-cente">
+        <section>
+            <h6 class="text-center lead mb-4"><i class='bx bxs-florist'></i>Hibiscus</h6>
+            <div class="card">
+              <h5 class="card-header">Barberia y Salón</h5>
+              <div class="card-body">
+                <h5 class="card-title">Quien somos</h5>
+                <p class="card-text">
+                    Somos una Barbería & Salón desde 2016 especializada en cortes de
+                    cabello para Damas y cortes de cabello y barba para Caballeros, en
+                    nuestro local podrás encontrar a las mejores mujeres barberas y un
+                    ambiente sinigual, trabajamos por medio de citas, puedes contactarnos
+                    haciendo uso de la información de contacto a continuación.
+                </p>
+                <dl class="row">
+                  <dt class="col-sm-3">Ubicación</dt>
+                  <dd class="col-sm-9">Calle 9 Anastasio Alfaro, Alajuela (Agonía),
+                    Provincia de Alajuela, 125mts Sur de la
+                    Iglesia Católica de La Agonía, frente a
+                    Pinturas Sur, Contiguo Acuario El Disco.</dd>
+
+                  <dt class="col-sm-3">Información de Contacto</dt>
+                  <dd class="col-sm-9">
+                    Telefono: <a href="https://wa.me/50687423723" target="_blank">87423723</a>
+                    <br />
+                    Correo: <a href="mailto:info@hibiscusbarberia.com" target="_blank">info@hibiscusbarberia.com</a>
+                  </dd>
+
+                  <dt class="col-sm-3">Confirmación instantánea</dt>
+                  <dd class="col-sm-9">Te responderemos lo mas rapido que podamos una vez envies tu mensaje.</dd>
+
+                  <dt class="col-sm-3 text-truncate">Unisex</dt>
+                  <dd class="col-sm-9">Tu trae la idea de corte que te guste.</dd>
+                </dl>
+              </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="col-md-6">
+        <section>
+            <a href="https://www.instagram.com/hibiscus_barberia_salon/?hl=es" target="_blank" class="nav-link text-dark">
+                <h6 class="text-center lead">
+                    <i class='bx bxl-instagram-alt' ></i>
+                    Instagram
+                </h6>
+            </a>
+
+            <div class="card" style="width: 34rem;">
+              <div id="instafeed-container" class="img-thumbnail"></div>
+            </div>
+        </section>
+    </div>
+</div>
+<br/>
+<hr />
+<br/>
+<div class="row">
+    <div class="col-md-12 text-cente">
+        <div id="myDiv" style="width:100%;height:400px;"></div>  
+    </div>
+</div>
+
+<style type="text/css">
+    a img{ width: 25%; }
+</style>
+
+<script src="https://cdn.jsdelivr.net/gh/stevenschobert/instafeed.js@2.0.0rc1/src/instafeed.min.js"></script>
+<script type="text/javascript">
+	var userFeed = new Instafeed({
+		get: 'user',
+		target: "instafeed-container",
+    	resolution: 'low_resolution',
+        limit: 16,
+        template: '<a href="{{link}}" target="_blank" id="{{id}}"><img src="{{image}}" class="img-thumbnail" /><span>{{likes}}{{comments}}</span></a>',
+		accessToken: 'IGQVJWcUYzaFAxTEROZAU16TnR3cHp2UllSX2ZAaNE1felhVaHUtQzJvblg2OHlYWnJyNjExQ3d1OEpuMElHV2JRYnlidzVaS0gyY3hER1llVXA1TEwwNHV2V3NnZADNfX2stZAVJhZAm05N0hxcmtXTEgzUwZDZD'
+	});
+	userFeed.run();
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
+<script src="https://maps.googleapis.com/maps/api/js?"></script> 
+      
+<script type="text/javascript">  
+    function DisplayGoogleMap() {  
+        //Set the Latitude and Longitude of the Map  
+        var myAddress = new google.maps.LatLng(10.01620, -84.20891);  
+  
+        //Create Options or set different Characteristics of Google Map  
+        var mapOptions = {  
+            center: myAddress,  
+            zoom: 15,  
+            minZoom: 15,  
+            mapTypeId: google.maps.MapTypeId.ROADMAP  
+        };  
+  
+        //Display the Google map in the div control with the defined Options  
+        var map = new google.maps.Map(document.getElementById("myDiv"), mapOptions);  
+  
+        //Set Marker on the Map  
+        var marker = new google.maps.Marker({  
+            position: myAddress,  
+            animation: google.maps.Animation.BOUNCE,  
+        });  
+  
+        marker.setMap(map);
+    }
+    DisplayGoogleMap.call();
+</script>
