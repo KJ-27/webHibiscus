@@ -1,4 +1,8 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Inicio";
 }
 
@@ -24,11 +28,13 @@
                     nuestro local podrás encontrar a las mejores mujeres barberas y un
                     ambiente sinigual, trabajamos por medio de citas, puedes contactarnos
                     haciendo uso de la información de contacto a continuación.
-
-                    <div class="d-flex justify-content-around">
-                        <a class="btn btn-outline-success btn-sm" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
-                        <a class="btn btn-outline-info btn-sm" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
-                    </div>
+                        @if (!SignInManager.IsSignedIn(User))
+                        {
+                            <div class="d-flex justify-content-around">
+                                <a class="btn btn-outline-success btn-sm" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
+                                <a class="btn btn-outline-info btn-sm" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
+                            </div>
+                        }
                 </p>
                 <hr />
                 <dl class="row">
@@ -79,10 +85,12 @@
 <br/>
 <div class="row">
     <div class="col-md-12 text-cente">
+        <a href="https://g.page/HibiscusBarberia?share" target="_blank" class="nav-link text-dark">
             <h6 class="text-center lead mb-4">
                 <i class='bx bx-map'></i>
                 <b>Ubicacion en Google Maps</b>
             </h6>
+        </a>
         <div id="myDiv" style="width:100%;height:400px;"></div>  
     </div>
 </div>
