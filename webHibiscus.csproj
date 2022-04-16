@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\stars.css" />
+    <None Include="wwwroot\Images\Home1.png" />
     <None Include="wwwroot\Images\StarFade.gif" />
     <None Include="wwwroot\Images\StarGlow.gif" />
   </ItemGroup>

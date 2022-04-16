@@ -54,11 +54,13 @@
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
-                    <div class="card col-md-6";">
-                      <div class="card-body">
-                        <p class="card-text">Bienvenido de vuelta, ingresa tus credenciales para poder hacer uso de todas las funciones de la pagina.</p>
-                      </div>
-                      <img src="/@Model./images/Home1.png" class="card-img-top" alt="Bienvenido">
+                    <div class="text-center d-flex justify-content-center">
+                        <div class="card" style="width: 30rem;">
+                          <div class="card-body">
+                            <p class="card-text">Bienvenido de vuelta, ingresa tus credenciales para poder hacer uso de todas las funciones de la pagina.</p>
+                          </div>
+                          <img src="~/Images/Home1.png" class="card-img-top" alt="Bienvenido">
+                        </div>
                     </div>
                 }
                 else
