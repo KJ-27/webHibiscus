@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using webHibiscus.Data;
 using webHibiscus.Models;
 using Microsoft.EntityFrameworkCore;
+using webHibiscus.Services;
 
 namespace webHibiscus
 {
@@ -37,6 +38,8 @@ namespace webHibiscus
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            services.AddScoped<IUserService, UserService>();
 
             var coonection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<db_a83ea8_hibiscusadminContext>(options => options.UseSqlServer(coonection));
