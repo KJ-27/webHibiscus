@@ -5,22 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Reservaciones</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Crear reservación</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayName("Fecha de cita")
+                @Html.DisplayNameFor(model => model.FechaHora)
             </th>
             <th>
-                @Html.DisplayName("Cliente")
+                @Html.DisplayNameFor(model => model.IdClienteNavigation)
             </th>
             <th>
-                @Html.DisplayName("Servicio a brindar")
+                @Html.DisplayNameFor(model => model.IdServicioNavigation)
             </th>
             <th></th>
         </tr>
@@ -33,20 +33,14 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)
-                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido2)
-                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdServicioNavigation.Nombre)
             </td>
             <td>
-                @*<a asp-action="Edit" asp-route-id="@item.IdReserva">Edit</a>*@
-                <button type="button" class="btn btn-info"/>
-                <a asp-action="Details" asp-route-id="@item.IdReserva">Detalles</a> 
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger"/>
-                <a asp-action="Delete" asp-route-id="@item.IdReserva">Eliminar</a>
+                <a asp-action="Edit" asp-route-id="@item.IdReserva">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdReserva">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdReserva">Delete</a>
             </td>
         </tr>
 }
