@@ -10,45 +10,44 @@
 <p>
     <a asp-action="Create">Crear reservación</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Fecha de cita")
-            </th>
-            <th>
-                @Html.DisplayName("Cliente")
-            </th>
-            <th>
-                @Html.DisplayName("Servicio a brindar")
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaHora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)
-                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido2)
-                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdServicioNavigation.Nombre)
-            </td>
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.IdReserva">Edit</a>*@
-                <button type="button" class="btn btn-info"/>
-                <a asp-action="Details" asp-route-id="@item.IdReserva">Detalles</a> 
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger"/>
-                <a asp-action="Delete" asp-route-id="@item.IdReserva">Eliminar</a>
-            </td>
-        </tr>
+<div class="card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Fecha de cita")
+                </th>
+                <th>
+                    @Html.DisplayName("Cliente")
+                </th>
+                <th>
+                    @Html.DisplayName("Servicio a brindar")
+                </th>
+                <th>
+                    @Html.DisplayName("Acciones")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaHora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)
+                    @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido2)
+                    @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdServicioNavigation.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdReserva" class="btn btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdReserva" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
 }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
