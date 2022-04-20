@@ -98,7 +98,7 @@ namespace webHibiscus.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Correo o contraseña erroneo.");
                     return Page();
                 }
             }
