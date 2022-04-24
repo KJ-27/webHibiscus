@@ -11,7 +11,7 @@
 
 <h2>Menú de reseñas</h2>
 <div class="" style="margin-bottom: 15px;">
-    <a class="btn btn-primary btn-small" asp-action="Create">Agregar Reseña</a>
+    <a class="btn btn-outline-primary btn-small" asp-action="Create">Agregar Reseña</a>
 </div>
 
 @foreach (var item in Model)
@@ -90,8 +90,8 @@
             <div class="container-fluid">
                 @if (ViewBag.UserId == item.IdClienteNavigation.IdUsuario)
                 {
-                    <a asp-action="Edit" class="btn btn-success btn-sm" asp-route-id="@item.IdResenia">Editar</a>
-                    <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.IdResenia">Eliminar</a>
+                    <a asp-action="Edit" class="btn btn-outline-warning btn-sm" asp-route-id="@item.IdResenia">Editar</a>
+                    <a asp-action="Delete" class="btn btn-outline-danger btn-sm" asp-route-id="@item.IdResenia">Eliminar</a>
                 }
             </div>
 
