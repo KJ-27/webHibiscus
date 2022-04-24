@@ -5,26 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Detalles de la reservación</h1>
 
 <div>
-    <h4>Reserva</h4>
+    <h4>Reservación</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaHora)
+            @Html.DisplayName("Fecha de cita")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FechaHora)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdClienteNavigation)
+            @Html.DisplayName("Cliente")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IdClienteNavigation.Apellido1)
+            @Html.DisplayFor(model => model.IdClienteNavigation.Apellido2)
+            @Html.DisplayFor(model => model.IdClienteNavigation.Nombre)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdServicioNavigation)
+            @Html.DisplayName("Servicio a brindar")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IdServicioNavigation.Nombre)
@@ -32,6 +34,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdReserva">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.IdReserva">Editar</a> |
+    <a asp-action="Index">Regresar a la Lista</a>
 </div>
