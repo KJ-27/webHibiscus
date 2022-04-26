@@ -18,5 +18,6 @@ namespace webHibiscus.Models
         public decimal Precio { get; set; }
 
         public virtual ICollection<Reserva> Reservas { get; set; }
+        public virtual ICollection<Cliente> Cliente { get; set; }
     }
 }
