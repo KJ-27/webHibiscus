@@ -25,5 +25,6 @@ namespace webHibiscus.Models
         public virtual AspNetUser IdUsuarioNavigation { get; set; }
         public virtual ICollection<Resennium> Resennia { get; set; }
         public virtual ICollection<Reserva> Reservas { get; set; }
+        public virtual ICollection<Servicio> Servicios { get; set; }
     }
 }

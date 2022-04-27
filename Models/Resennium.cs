@@ -15,5 +15,6 @@ namespace webHibiscus.Models
         public DateTime Fecha { get; set; }
 
         public virtual Cliente IdClienteNavigation { get; set; }
+        //public object IdServicioNavigation { get; set; }
     }
 }

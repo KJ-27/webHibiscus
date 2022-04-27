@@ -6,21 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using webHibiscus.Models;
+using webHibiscus.Services;
 
 namespace webHibiscus.Controllers
 {
     public class ReservaController : Controller
     {
         private readonly db_a83ea8_hibiscusadminContext _context;
+        private readonly IUserService _userService;
 
-        public ReservaController(db_a83ea8_hibiscusadminContext context)
+        public ReservaController(db_a83ea8_hibiscusadminContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
 
         // GET: Reserva
         public async Task<IActionResult> Index()
         {
+            var lista = new List<SelectListItem>();
+            ViewBag.UserId = _userService.GetUserId();
             var db_a83ea8_hibiscusadminContext = _context.Reservas.Include(r => r.IdClienteNavigation).Include(r => r.IdServicioNavigation);
             return View(await db_a83ea8_hibiscusadminContext.ToListAsync());
         }
@@ -46,10 +51,28 @@ namespace webHibiscus.Controllers
         }
 
         // GET: Reserva/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-            ViewData["IdCliente"] = new SelectList(_context.Clientes, "IdCliente", "Apellido1");
-            ViewData["IdServicio"] = new SelectList(_context.Servicios, "IdServicio", "Nombre");
+            var UserId = _userService.GetUserId();
+            var lista = new List<SelectListItem>();
+            var usuarios = _context.Clientes.ToList();
+            foreach (var user in usuarios)
+            {
+                if (UserId == user.IdUsuario)
+                {
+                    var prueba = new SelectListItem { Value = user.IdUsuario, Text = user.Nombre + " " + user.Apellido1 + " " + user.Apellido2, Selected = true };
+                    lista.Add(prueba);
+                }
+                else{
+                    var prueba = new SelectListItem { Value = user.IdUsuario, Text = user.Nombre + " " + user.Apellido1 + " " + user.Apellido2 };
+                    lista.Add(prueba);
+                }
+                
+                
+            }
+            ViewData["IdCliente"] = lista;
+            //ViewData["IdCliente"] = new SelectList(_context.Clientes.Where(o => o.IdUsuario == UserId), "IdCliente", "Apellido1");
+            ViewData["IdServicio"] = new SelectList(_context.Servicios, "IdServicio", "Nombre", id);
             return View();
         }
 
