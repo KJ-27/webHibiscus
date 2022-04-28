@@ -1,13 +1,9 @@
 ﻿@model IEnumerable<webHibiscus.Models.Resennium>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reseñas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<head>
-    <link rel="stylesheet" href="~/css/resennia.css" />
-</head>
 
 <h2>Menú de reseñas</h2>
 <div class="" style="margin-bottom: 15px;">
@@ -20,13 +16,14 @@
     <div class="card container-fluid" style="background-color:white">
 
         <div class="container-fluid">
-            <h4>
+            <h5>
+                <br />
                 <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)</b>
                 <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)</b>
                 <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido2)</b>
                 -
                 @Html.ValueFor(modelItem => item.Fecha, "{0:dd/MM/yyyy}")
-            </h4>
+            </h5>
 
             <form>
                 <fieldset class="starability-basic">
@@ -84,8 +81,6 @@
             </form>
 
             <p class="container-fluid" style="color:black;font-size:large">@Html.DisplayFor(modelItem => item.Cotenido)</p>
-
-            <br />
 
             <div class="container-fluid">
                 @if (ViewBag.UserId == item.IdClienteNavigation.IdUsuario)
