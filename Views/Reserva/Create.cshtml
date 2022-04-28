@@ -5,38 +5,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Nueva Reservación</h1>
-
-<h4>Reservación</h4>
+<h1>Agendar</h1>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <label asp-for="FechaHora" class="control-label">Fecha/Hora</label>
                 <input asp-for="FechaHora" class="form-control" />
                 <span asp-validation-for="FechaHora" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="IdCliente" class="control-label">Cliente</label>
-                <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente"></select>
-                <span asp-validation-for="IdCliente" class="text-danger"></span>
+                <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente" hidden></select>
             </div>
+
             <div class="form-group">
                 <label asp-for="IdServicio" class="control-label">Servicio</label>
                 <select asp-for="IdServicio" class="form-control" asp-items="ViewBag.IdServicio"></select>
                 <span asp-validation-for="IdCliente" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Reservar" class="btn btn-primary" />
+                <br />
+                <input type="submit" value="Reservar" class="btn btn-outline-success" />
+                <a class="btn btn-outline-danger" asp-area="" asp-controller="Servicio" asp-action="Index">Cancelar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Regresar a Lista</a>
 </div>
 
 @section Scripts {

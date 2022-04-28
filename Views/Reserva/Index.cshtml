@@ -1,53 +1,40 @@
 ﻿@model IEnumerable<webHibiscus.Models.Reserva>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reservas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Reservaciones</h1>
+<h1>Reservas</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-info">Nueva reservación</a>
+    <a class="btn btn-outline-primary" asp-area="" asp-controller="Servicio" asp-action="Index">Agendar</a>
 </p>
-<div class="card">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayName("Fecha de cita")
-                </th>
-                <th>
-                    @Html.DisplayName("Cliente")
-                </th>
-                <th>
-                    @Html.DisplayName("Servicio a brindar")
-                </th>
-                <th>
-                    @Html.DisplayName("Acciones")
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaHora)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)
-                    @Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido2)
-                    @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdServicioNavigation.Nombre)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdReserva" class="btn btn-warning">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@item.IdReserva" class="btn btn-danger">Eliminar</a>
-                </td>
-            </tr>
+@foreach (var item in Model)
+{
+
+    <div class="card container-fluid" style="background-color:white">
+
+        <div class="container-fluid">
+            <h5>
+                <br />
+                <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)</b>
+                <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido1)</b>
+                <b>@Html.DisplayFor(modelItem => item.IdClienteNavigation.Apellido2)</b>
+                -
+                @Html.ValueFor(modelItem => item.FechaHora)
+            </h5>
+
+            <p class="container-fluid" style="color:black;font-size:large">Servicio reservado: @Html.DisplayFor(modelItem => item.IdServicioNavigation.Nombre)</p>
+
+            <div class="container-fluid">
+                @if (ViewBag.UserId == item.IdClienteNavigation.IdUsuario)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.IdReserva" class="btn btn-outline-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdReserva" class="btn btn-outline-danger">Eliminar</a>
+                }
+            </div>
+
+        </div>
+    </div>
 }
-        </tbody>
-    </table>
-</div>

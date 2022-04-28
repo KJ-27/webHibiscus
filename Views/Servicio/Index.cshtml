@@ -7,25 +7,29 @@
 
 <h1>Servicios</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-info">Nuevo Servicio</a>
-</p>
-@foreach (var item in Model) {
-<div class="card">
-  <div class="card-header">
-    Servicio
-  </div>
-  <div class="card-body">
-      <div class="row">
-          <div class="col-md-2">
-            <a asp-controller="Reserva" asp-action="Create" asp-route-id="@item.IdServicio" class="btn btn-info">Agendar</a>
-          </div>
-          <div class="col-md-4">
-            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre)</h5>
-            <p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-            <p class="card-text">@Html.DisplayFor(modelItem => item.Precio)</p>
-          </div>
+@foreach (var item in Model)
+{
+
+    <div class="card container-fluid" style="background-color:white">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2" style="display: flex; align-items: center; justify-content: center;">
+                    <section>
+                        <a asp-controller="Reserva" asp-action="Create" asp-route-id="@item.IdServicio" class="btn btn-outline-primary">Agendar</a>
+                    </section>
+                </div>
+                <div class="col-md-10">
+                    <section>
+                        <h5>
+                            <br />
+                            <b>@Html.DisplayFor(modelItem => item.Nombre)</b>
+                            -
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </h5>
+                        <p class="container-fluid" style="color:black;font-size:large">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 }

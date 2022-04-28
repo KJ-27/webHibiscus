@@ -54,24 +54,9 @@ namespace webHibiscus.Controllers
         public IActionResult Create(int id)
         {
             var UserId = _userService.GetUserId();
-            var lista = new List<SelectListItem>();
             var usuarios = _context.Clientes.ToList();
-            foreach (var user in usuarios)
-            {
-                if (UserId == user.IdUsuario)
-                {
-                    var prueba = new SelectListItem { Value = user.IdUsuario, Text = user.Nombre + " " + user.Apellido1 + " " + user.Apellido2, Selected = true };
-                    lista.Add(prueba);
-                }
-                else{
-                    var prueba = new SelectListItem { Value = user.IdUsuario, Text = user.Nombre + " " + user.Apellido1 + " " + user.Apellido2 };
-                    lista.Add(prueba);
-                }
-                
-                
-            }
-            ViewData["IdCliente"] = lista;
-            //ViewData["IdCliente"] = new SelectList(_context.Clientes.Where(o => o.IdUsuario == UserId), "IdCliente", "Apellido1");
+
+            ViewData["IdCliente"] = new SelectList(_context.Clientes.Where(o => o.IdUsuario == UserId), "IdCliente", "Apellido1");
             ViewData["IdServicio"] = new SelectList(_context.Servicios, "IdServicio", "Nombre", id);
             return View();
         }
